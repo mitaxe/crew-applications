@@ -27,13 +27,6 @@ class Board extends Component {
     configureFilter: PropTypes.func.isRequired
   }
 
-  state = {
-    filters: {
-      name: '',
-      city: ''
-    }
-  }
-
   componentDidMount () {
     this.props.getUsers()
   }
