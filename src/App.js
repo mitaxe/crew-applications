@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Board from './containers/Board'
-import './styles/globals.scss'
+import './styles/vendor/normalize.css'
+import './styles/app.css'
 
 class App extends Component {
   render () {
     return (
-      <div className='App'>
+      <div className='container'>
         <Board />
       </div>
     )

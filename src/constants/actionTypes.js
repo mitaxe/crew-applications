@@ -1,4 +1,5 @@
 export const GET_USERS = createActionType('GET_USERS')
+export const APPLY_FILTER = 'APPLY_FILTER'
 
 function createActionType (name) {
   return {

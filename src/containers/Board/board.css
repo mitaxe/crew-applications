@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.filter > div {
+  width: 200px;
+}
+
+.board {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 60px;
+}
+
+.column > h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
