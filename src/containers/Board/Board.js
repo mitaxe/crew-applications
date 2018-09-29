@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { getUsers, configureFilter } from '../../actions/hiringBoardActions'
+import { getUsers, configureFilter, moveCard } from '../../actions/hiringBoardActions'
 import { BOARD_COLUMNS } from '../../constants/common'
 import UserCard from '../../components/UserCard'
 import Input from '../../components/Common/Input'
@@ -24,32 +24,27 @@ class Board extends Component {
       interviewing: PropTypes.array,
       hiring: PropTypes.array
     }),
-    configureFilter: PropTypes.func.isRequired
-  }
-
-  state = {
-    filters: {
-      name: '',
-      city: ''
-    }
+    configureFilter: PropTypes.func.isRequired,
+    moveCard: PropTypes.func.isRequired
   }
 
   componentDidMount () {
     this.props.getUsers()
   }
 
-  renderCards = (users = [], column) => {
-    const { filters } = this.props
-    const filteredUsers = filterByCityAndName(users[column], filters)
+  renderCards = (users = [], currentColumn) => {
+    const { filters, moveCard } = this.props
+    const filteredUsers = filterByCityAndName(users[currentColumn], filters)
     return filteredUsers.map(user => {
       const { id, name, avatar, city } = user
       return (
         <UserCard {...{
           key: id,
-          type: column,
+          type: currentColumn,
           name,
           avatar,
-          city
+          city,
+          onClick: toColumn => moveCard(id, currentColumn, toColumn)
         }} />
       )
     })
@@ -89,7 +84,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getUsers,
-  configureFilter
+  configureFilter,
+  moveCard
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)

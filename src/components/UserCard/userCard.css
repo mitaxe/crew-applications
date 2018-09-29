@@ -1,29 +1,47 @@
 .userCard {
     display: flex;
+    flex-direction: column;
     border: 1px solid rgba(0, 0, 0, .5);
     border-radius: 6px;
-    padding: 15px 30px;
+    padding: 15px;
     margin-bottom: 16px;
+    background: #ffc220;
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.userContainer > div {
+    padding-left: 6px;
 }
 
 img {
     border-radius: 100%;
-}
-
-.userCard > div {
-    padding-left: 10px;
+    width: 74px;
+    height: 74px;
 }
 
 p {
-    padding: 10px 10px 0 0;
+    padding: 5px 10px 0 0;
     margin: 0;
-}
-
-.userCard > div:first-child {
-    display: flex;
-    flex-direction: column;
 }
 
 span {
     cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    margin-top: 4px;
+    justify-content: flex-end;
+}
+
+i {
+    cursor: pointer;
+}
+
+i:first-child {
+    margin-right: 8px;
 }
