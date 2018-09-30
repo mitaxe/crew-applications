@@ -5,7 +5,9 @@ import MaterialIcon from 'material-icons-react'
 import './userCard.css'
 
 const renderButton = (icon, column, onClick) =>
-  <MaterialIcon icon={icon} onClick={() => onClick(column)} />
+  <div onClick={() => onClick(column)} >
+    <MaterialIcon icon={icon} />
+  </div>
 
 const renderControls = (type, onClick) => {
   switch (type) {
@@ -24,7 +26,8 @@ const renderControls = (type, onClick) => {
       return renderButton('chevron_left', BOARD_COLUMNS_TYPES[1], onClick)
     }
 
-    default: return null
+    default:
+      return null
   }
 }
 

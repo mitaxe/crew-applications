@@ -38,6 +38,10 @@ span {
     justify-content: flex-end;
 }
 
+.controls > div:first-child {
+    display: flex;
+}
+
 i {
     cursor: pointer;
 }
