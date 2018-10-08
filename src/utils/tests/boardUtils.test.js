@@ -29,4 +29,8 @@ describe('filterByCityAndName', () => {
       ...mocks.usersMocks[2]
     }])
   })
+
+  it('should find all users whose name begins with the same letters', () => {
+    expect(filterByCityAndName(mocks.usersMocks, mocks.filterCondition6)).toEqual(mocks.usersMocks)
+  })
 })
