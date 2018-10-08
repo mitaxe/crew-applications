@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -9,14 +12,25 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
 const middlewares = [thunk]
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, reducers)
+
 const store = createStore(
-  reducers,
+  persistedReducer,
   composeWithDevTools(applyMiddleware(...middlewares))
 )
 
+const persistor = persistStore(store)
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 )

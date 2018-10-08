@@ -5,12 +5,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
+    "material-icons-react": "^1.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {

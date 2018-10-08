@@ -22,7 +22,7 @@ export const getUsers = () => dispatch => {
         payload: {
           applied: parsedUsers,
           interviewing: [],
-          hiring: []
+          hired: []
         }
       })
     })
@@ -40,5 +40,21 @@ export const configureFilter = (name, value) => dispatch => {
   dispatch({
     type: APPLY_FILTER,
     payload: { name, value }
+  })
+}
+
+export const moveCard = (id, from, to) => (dispatch, getState) => {
+  const { MOVE_CARD } = actionTypes
+  const { hiringBoard: { users } } = getState()
+  const user = users[from].find(user => user.id === id)
+  const oldColumn = users[from].filter(user => user.id !== id)
+  const newColumn = [ ...users[to], user ]
+
+  dispatch({
+    type: MOVE_CARD,
+    payload: {
+      [from]: oldColumn,
+      [to]: newColumn
+    }
   })
 }

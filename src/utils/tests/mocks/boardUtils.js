@@ -32,3 +32,8 @@ export const filterCondition4 = {
   name: 'Test user 2',
   city: 'Test city 3'
 }
+
+export const filterCondition5 = {
+  name: 'Test USER 3',
+  city: 'Test CITY 3'
+}

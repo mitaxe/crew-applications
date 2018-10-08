@@ -4,7 +4,7 @@ const initialState = {
   users: {
     applied: [],
     interviewing: [],
-    hiring: []
+    hired: []
   },
   filters: {
     name: '',
@@ -13,7 +13,7 @@ const initialState = {
 }
 
 export default function hiringBoard (state = initialState, action) {
-  const { GET_USERS, APPLY_FILTER } = actionTypes
+  const { GET_USERS, APPLY_FILTER, MOVE_CARD } = actionTypes
   switch (action.type) {
     case GET_USERS.REQUEST: {
       return {
@@ -43,6 +43,17 @@ export default function hiringBoard (state = initialState, action) {
         }
       }
     }
+
+    case MOVE_CARD: {
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          ...action.payload
+        }
+      }
+    }
+
     default: {
       return state
     }

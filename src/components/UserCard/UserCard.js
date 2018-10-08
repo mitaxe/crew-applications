@@ -1,37 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BOARD_COLUMNS_TYPES } from '../../constants/common'
+import MaterialIcon from 'material-icons-react'
 import './userCard.css'
 
-const renderControls = (type) => {
-  // @TODO: Refactor it, time is up. It's not finished part
+const renderButton = (icon, column, onClick) =>
+  <div onClick={() => onClick(column)} >
+    <MaterialIcon icon={icon} />
+  </div>
+
+const renderControls = (type, onClick) => {
   switch (type) {
     case BOARD_COLUMNS_TYPES[0]: {
-      return <span>right</span>
+      return renderButton('chevron_right', BOARD_COLUMNS_TYPES[1], onClick)
     }
     case BOARD_COLUMNS_TYPES[1]: {
       return (
         <div>
-          <span>left</span>
-          <span>right</span>
+          {renderButton('chevron_left', BOARD_COLUMNS_TYPES[0], onClick)}
+          {renderButton('chevron_right', BOARD_COLUMNS_TYPES[2], onClick)}
         </div>
       )
     }
     case BOARD_COLUMNS_TYPES[2]: {
-      return <span>right</span>
+      return renderButton('chevron_left', BOARD_COLUMNS_TYPES[1], onClick)
     }
 
-    default: return null
+    default:
+      return null
   }
 }
 
-const UserCard = ({ name, avatar, city, type }) =>
+const UserCard = ({ name, avatar, city, type, onClick }) =>
   <div className='userCard'>
-    <img src={avatar} alt='avatar' />
-    <div>
-      <p>Name: {name}</p>
-      <p>City: {city}</p>
-      {renderControls(type)}
+    <div className='userContainer'>
+      <img src={avatar} alt='avatar' />
+      <div>
+        <p>Name: {name}</p>
+        <p>City: {city}</p>
+      </div>
+    </div>
+    <div className='controls'>
+      {renderControls(type, onClick)}
     </div>
   </div>
 
@@ -39,6 +49,7 @@ UserCard.propTypes = {
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
   type: PropTypes.oneOf(BOARD_COLUMNS_TYPES)
 }
 

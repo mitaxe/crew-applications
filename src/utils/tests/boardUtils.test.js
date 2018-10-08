@@ -23,4 +23,10 @@ describe('filterByCityAndName', () => {
   it('should return return empty array if user is correct and city is incorrect', () => {
     expect(filterByCityAndName(mocks.usersMocks, mocks.filterCondition4)).toEqual([])
   })
+
+  it('should not be case-sensitive', () => {
+    expect(filterByCityAndName(mocks.usersMocks, mocks.filterCondition5)).toEqual([{
+      ...mocks.usersMocks[2]
+    }])
+  })
 })

@@ -8,9 +8,9 @@ export const BOARD_COLUMNS = [
     label: 'Interviewing'
   },
   {
-    id: 'hiring',
-    label: 'Hiring'
+    id: 'hired',
+    label: 'Hired'
   }
 ]
 
-export const BOARD_COLUMNS_TYPES = ['applied', 'interviewing', 'hiring']
+export const BOARD_COLUMNS_TYPES = ['applied', 'interviewing', 'hired']
